@@ -1,0 +1,12 @@
+{
+  "name": "ground-control-relay",
+  "version": "1.0.0",
+  "description": "WebSocket relay server for Ground Control",
+  "main": "relay.js",
+  "scripts": {
+    "start": "node relay.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}

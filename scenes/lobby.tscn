@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/lobby.gd" id="1"]
+
+[node name="Lobby" type="Control"]
+script = ExtResource("1")
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBox" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+theme_override_constants/separation = 16
+
+[node name="CodeLabel" type="Label" parent="VBox"]
+text = "Room Code: ----"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+
+[node name="Divider" type="HSeparator" parent="VBox"]
+
+[node name="PlayersTitle" type="Label" parent="VBox"]
+text = "Players"
+theme_override_font_sizes/font_size = 18
+
+[node name="PlayerList" type="VBoxContainer" parent="VBox"]
+theme_override_constants/separation = 8
+
+[node name="StartButton" type="Button" parent="VBox"]
+text = "Start Game"
+custom_minimum_size = Vector2(400, 52)
+visible = false
+
+[node name="WaitLabel" type="Label" parent="VBox"]
+text = "Waiting for host to start..."
+horizontal_alignment = 1
