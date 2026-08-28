@@ -48,5 +48,13 @@ func _on_player_left(pid: String) -> void:
 func _on_start_pressed() -> void:
 	NetworkManager.start_game()
 
+func _exit_tree() -> void:
+	if NetworkManager.player_joined.is_connected(_on_player_joined):
+		NetworkManager.player_joined.disconnect(_on_player_joined)
+	if NetworkManager.player_left.is_connected(_on_player_left):
+		NetworkManager.player_left.disconnect(_on_player_left)
+	if NetworkManager.game_started.is_connected(_on_game_started):
+		NetworkManager.game_started.disconnect(_on_game_started)
+
 func _on_game_started(_seed_value: int) -> void:
 	get_tree().change_scene_to_file("res://scenes/levels/level_01.tscn")

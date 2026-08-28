@@ -13,8 +13,7 @@ signal key_collected_by(pid: String)
 signal player_won(pid: String)
 signal server_error(message: String)
 
-# Change this to your deployed relay URL after hosting
-const SERVER_URL := "ws://localhost:8080"
+const SERVER_URL := "wss://ground-control-production-527b.up.railway.app"
 
 var my_id    := ""
 var my_color := Color.WHITE

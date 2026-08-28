@@ -18,6 +18,18 @@ func _ready() -> void:
 	join_button.pressed.connect(_on_join_pressed)
 	status_label.text = ""
 
+func _exit_tree() -> void:
+	if NetworkManager.connected_to_server.is_connected(_on_connected):
+		NetworkManager.connected_to_server.disconnect(_on_connected)
+	if NetworkManager.connection_failed.is_connected(_on_connection_failed):
+		NetworkManager.connection_failed.disconnect(_on_connection_failed)
+	if NetworkManager.room_created.is_connected(_on_room_ready):
+		NetworkManager.room_created.disconnect(_on_room_ready)
+	if NetworkManager.room_joined.is_connected(_on_room_ready):
+		NetworkManager.room_joined.disconnect(_on_room_ready)
+	if NetworkManager.server_error.is_connected(_on_error):
+		NetworkManager.server_error.disconnect(_on_error)
+
 func _on_host_pressed() -> void:
 	_intent = "host"
 	_set_busy("Connecting to server...")

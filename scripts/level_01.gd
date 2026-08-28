@@ -51,11 +51,11 @@ func _setup_multiplayer() -> void:
 
 func _spawn_remote(pid: String, color: Color) -> void:
 	var p: Node = PLAYER_SCENE.instantiate()
-	p.name      = "Remote_" + pid
-	p.is_local  = false
-	p.set_player_color(color)
-	p.position  = Vector2(300 + remote_players.size() * 60, 560)
+	p.name     = "Remote_" + pid
+	p.is_local = false
+	p.position = Vector2(300 + remote_players.size() * 60, 560)
 	add_child(p)
+	p.set_player_color(color)  # after add_child so @onready vars are resolved
 	remote_players[pid] = p
 
 # ---------- Per-frame ----------
@@ -92,6 +92,18 @@ func _on_net_key_collected(pid: String) -> void:
 			key.queue_free()
 			break
 
+func _exit_tree() -> void:
+	if NetworkManager.player_joined.is_connected(_on_net_joined):
+		NetworkManager.player_joined.disconnect(_on_net_joined)
+	if NetworkManager.player_left.is_connected(_on_net_left):
+		NetworkManager.player_left.disconnect(_on_net_left)
+	if NetworkManager.position_received.is_connected(_on_net_position):
+		NetworkManager.position_received.disconnect(_on_net_position)
+	if NetworkManager.key_collected_by.is_connected(_on_net_key_collected):
+		NetworkManager.key_collected_by.disconnect(_on_net_key_collected)
+	if NetworkManager.player_won.is_connected(_on_net_player_won):
+		NetworkManager.player_won.disconnect(_on_net_player_won)
+
 func _on_net_player_won(_pid: String) -> void:
 	_show_win("Another player reached the ship first!")
 
@@ -107,9 +119,10 @@ func _show_win(msg: String) -> void:
 	label.add_theme_font_size_override("font_size", 64)
 	label.set_anchors_preset(Control.PRESET_CENTER)
 	add_child(label)
-	await get_tree().create_timer(3.0).timeout
+	var tree := get_tree()
+	await tree.create_timer(3.0).timeout
 	if NetworkManager.my_id.is_empty():
-		get_tree().reload_current_scene()
+		tree.reload_current_scene()
 	else:
 		NetworkManager.reset()
-		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+		tree.change_scene_to_file("res://scenes/main_menu.tscn")
