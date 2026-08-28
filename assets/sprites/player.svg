@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="48" viewBox="0 0 32 48">
+  <!-- helmet -->
+  <circle cx="16" cy="10" r="9" fill="white" stroke="#cccccc" stroke-width="1"/>
+  <circle cx="16" cy="10" r="5" fill="#aaddff" opacity="0.6"/>
+  <!-- body / suit -->
+  <rect x="7" y="19" width="18" height="16" rx="4" fill="white"/>
+  <!-- chest pack -->
+  <rect x="11" y="22" width="10" height="7" rx="2" fill="#dddddd"/>
+  <!-- legs -->
+  <rect x="8" y="34" width="7" height="11" rx="3" fill="white"/>
+  <rect x="17" y="34" width="7" height="11" rx="3" fill="white"/>
+  <!-- boots -->
+  <rect x="6" y="43" width="10" height="5" rx="2" fill="#cccccc"/>
+  <rect x="16" y="43" width="10" height="5" rx="2" fill="#cccccc"/>
+  <!-- arms -->
+  <rect x="0" y="20" width="8" height="6" rx="3" fill="white"/>
+  <rect x="24" y="20" width="8" height="6" rx="3" fill="white"/>
+</svg>

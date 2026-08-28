@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <!-- key bow (ring) -->
+  <circle cx="9" cy="9" r="7" fill="white" stroke="#cccccc" stroke-width="1.5"/>
+  <circle cx="9" cy="9" r="3.5" fill="#888888"/>
+  <!-- key blade -->
+  <rect x="14" y="8" width="9" height="3" rx="1" fill="white"/>
+  <!-- teeth -->
+  <rect x="18" y="11" width="2.5" height="4" rx="1" fill="white"/>
+  <rect x="14" y="11" width="2.5" height="3" rx="1" fill="white"/>
+</svg>

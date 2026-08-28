@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="64" viewBox="0 0 80 64">
+  <!-- engine exhausts -->
+  <ellipse cx="25" cy="58" rx="8" ry="5" fill="#ff6600" opacity="0.8"/>
+  <ellipse cx="55" cy="58" rx="8" ry="5" fill="#ff6600" opacity="0.8"/>
+  <!-- main body -->
+  <ellipse cx="40" cy="36" rx="28" ry="18" fill="#c0c8e0"/>
+  <!-- nose cone -->
+  <polygon points="40,4 26,30 54,30" fill="#d0d8f0"/>
+  <!-- cockpit window -->
+  <ellipse cx="40" cy="24" rx="9" ry="7" fill="#44aaff" opacity="0.8"/>
+  <ellipse cx="40" cy="23" rx="5" ry="4" fill="#88ccff" opacity="0.5"/>
+  <!-- left wing -->
+  <polygon points="12,42 28,34 28,52" fill="#a0a8c8"/>
+  <!-- right wing -->
+  <polygon points="68,42 52,34 52,52" fill="#a0a8c8"/>
+  <!-- engine pods -->
+  <rect x="16" y="50" width="18" height="8" rx="4" fill="#8890b0"/>
+  <rect x="46" y="50" width="18" height="8" rx="4" fill="#8890b0"/>
+  <!-- hull detail stripe -->
+  <rect x="24" y="34" width="32" height="3" rx="1" fill="#e8eeff" opacity="0.5"/>
+</svg>
