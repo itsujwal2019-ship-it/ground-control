@@ -22,6 +22,8 @@ func _ready() -> void:
 		Vector2(-8, 22),  Vector2(-10, -8),
 	])
 	target_position = global_position
+	if not is_local:
+		$CollisionShape2D.disabled = true
 
 func _physics_process(delta: float) -> void:
 	if not is_local:

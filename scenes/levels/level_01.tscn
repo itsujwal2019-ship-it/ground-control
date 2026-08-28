@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene format=3 uid="uid://kvelrfytlxb4"]
 
-[ext_resource type="Script" path="res://scripts/level_01.gd" id="1"]
-[ext_resource type="Script" path="res://scripts/key_spawner.gd" id="2"]
+[ext_resource type="Script" uid="uid://brvp32c42ksqk" path="res://scripts/level_01.gd" id="1"]
+[ext_resource type="Script" uid="uid://8efvblllsbv4" path="res://scripts/key_spawner.gd" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://scenes/spaceship.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="5"]
@@ -18,78 +18,91 @@ size = Vector2(220, 24)
 [sub_resource type="RectangleShape2D" id="4"]
 size = Vector2(220, 24)
 
-[node name="Level01" type="Node2D"]
+[node name="Level01" type="Node2D" unique_id=1158966020]
 script = ExtResource("1")
 
-[node name="Player" parent="." instance=ExtResource("3")]
+[node name="Player" parent="." unique_id=1242795113 instance=ExtResource("3")]
 position = Vector2(120, 560)
 
-[node name="Spaceship" parent="." instance=ExtResource("4")]
+[node name="Spaceship" parent="." unique_id=1112633380 instance=ExtResource("4")]
 position = Vector2(1100, 260)
 
-[node name="HUD" parent="." instance=ExtResource("5")]
+[node name="HUD" parent="." unique_id=1177141398 instance=ExtResource("5")]
 
-[node name="KeySpawner" type="Node2D" parent="."]
+[node name="KeySpawner" type="Node2D" parent="." unique_id=1383911257]
 script = ExtResource("2")
-active_players = 1
 
-[node name="SpawnPoint1" type="Marker2D" parent="KeySpawner"]
+[node name="SpawnPoint1" type="Marker2D" parent="KeySpawner" unique_id=759993557]
 position = Vector2(280, 560)
 
-[node name="SpawnPoint2" type="Marker2D" parent="KeySpawner"]
+[node name="SpawnPoint2" type="Marker2D" parent="KeySpawner" unique_id=107521315]
 position = Vector2(600, 400)
 
-[node name="SpawnPoint3" type="Marker2D" parent="KeySpawner"]
+[node name="SpawnPoint3" type="Marker2D" parent="KeySpawner" unique_id=2115697684]
 position = Vector2(880, 260)
 
-[node name="Platforms" type="Node2D" parent="."]
+[node name="Platforms" type="Node2D" parent="." unique_id=182515181]
 
-[node name="Ground" type="StaticBody2D" parent="Platforms"]
-position = Vector2(640, 660)
+[node name="Ground-2" type="StaticBody2D" parent="Platforms" unique_id=555096123]
+rotation = -1.553343
+scale = Vector2(1.06, 1.06)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Ground"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Ground-2" unique_id=292722260]
 shape = SubResource("1")
 
-[node name="Visual" type="ColorRect" parent="Platforms/Ground"]
+[node name="Visual" type="ColorRect" parent="Platforms/Ground-2" unique_id=1947889008]
 offset_left = -640.0
 offset_top = -16.0
 offset_right = 640.0
 offset_bottom = 16.0
 color = Color(0.25, 0.28, 0.45, 1)
 
-[node name="Platform1" type="StaticBody2D" parent="Platforms"]
+[node name="Ground" type="StaticBody2D" parent="Platforms" unique_id=1402537377]
+position = Vector2(640, 660)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Ground" unique_id=1315634621]
+shape = SubResource("1")
+
+[node name="Visual" type="ColorRect" parent="Platforms/Ground" unique_id=150312140]
+offset_left = -640.0
+offset_top = -16.0
+offset_right = 640.0
+offset_bottom = 16.0
+color = Color(0.25, 0.28, 0.45, 1)
+
+[node name="Platform1" type="StaticBody2D" parent="Platforms" unique_id=1097241914]
 position = Vector2(280, 600)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform1" unique_id=1296778974]
 shape = SubResource("2")
 
-[node name="Visual" type="ColorRect" parent="Platforms/Platform1"]
+[node name="Visual" type="ColorRect" parent="Platforms/Platform1" unique_id=842045806]
 offset_left = -110.0
 offset_top = -12.0
 offset_right = 110.0
 offset_bottom = 12.0
 color = Color(0.25, 0.28, 0.45, 1)
 
-[node name="Platform2" type="StaticBody2D" parent="Platforms"]
+[node name="Platform2" type="StaticBody2D" parent="Platforms" unique_id=1212682120]
 position = Vector2(600, 460)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform2" unique_id=1208083721]
 shape = SubResource("3")
 
-[node name="Visual" type="ColorRect" parent="Platforms/Platform2"]
+[node name="Visual" type="ColorRect" parent="Platforms/Platform2" unique_id=915602548]
 offset_left = -110.0
 offset_top = -12.0
 offset_right = 110.0
 offset_bottom = 12.0
 color = Color(0.25, 0.28, 0.45, 1)
 
-[node name="Platform3" type="StaticBody2D" parent="Platforms"]
+[node name="Platform3" type="StaticBody2D" parent="Platforms" unique_id=1289031819]
 position = Vector2(920, 320)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform3" unique_id=1611146975]
 shape = SubResource("4")
 
-[node name="Visual" type="ColorRect" parent="Platforms/Platform3"]
+[node name="Visual" type="ColorRect" parent="Platforms/Platform3" unique_id=701520093]
 offset_left = -110.0
 offset_top = -12.0
 offset_right = 110.0
