@@ -93,6 +93,7 @@ func _on_net_key_collected(pid: String) -> void:
 			break
 
 func _exit_tree() -> void:
+	get_tree().paused = false  # always unpause when leaving level
 	if NetworkManager.player_joined.is_connected(_on_net_joined):
 		NetworkManager.player_joined.disconnect(_on_net_joined)
 	if NetworkManager.player_left.is_connected(_on_net_left):

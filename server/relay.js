@@ -51,7 +51,9 @@ wss.on('connection', (ws) => {
           players:    new Map([[pid, ws]]),
           colorMap:   new Map([[pid, 0]]),
           usedColors: new Set([0]),
-          host: pid,
+          host:       pid,
+          paused:     false,
+          pauseTimer: null,
         });
         ws.roomCode = code;
         send(ws, { type: 'room_created', code, color: COLORS[0] });
@@ -89,6 +91,30 @@ wss.on('connection', (ws) => {
         break;
       }
 
+      case 'pause': {
+        const room = rooms.get(ws.roomCode);
+        if (!room || room.paused) return;
+        room.paused = true;
+        broadcast(room, { type: 'paused', by: pid });  // send to ALL including pauser
+        room.pauseTimer = setTimeout(() => {
+          if (!room.paused) return;
+          room.paused = false;
+          room.pauseTimer = null;
+          broadcast(room, { type: 'resumed' });
+        }, 20000);
+        break;
+      }
+
+      case 'resume': {
+        const room = rooms.get(ws.roomCode);
+        if (!room || !room.paused) return;
+        clearTimeout(room.pauseTimer);
+        room.pauseTimer = null;
+        room.paused = false;
+        broadcast(room, { type: 'resumed' });
+        break;
+      }
+
       // Positional / game-state messages — just forward with sender id
       case 'move':
       case 'key_collected':
@@ -109,6 +135,7 @@ wss.on('connection', (ws) => {
     room.usedColors.delete(ci);
     broadcast(room, { type: 'player_left', id: pid });
     if (room.players.size === 0) {
+      if (room.pauseTimer) clearTimeout(room.pauseTimer);
       rooms.delete(ws.roomCode);
     } else if (room.host === pid) {
       room.host = room.players.keys().next().value;  // promote oldest remaining player

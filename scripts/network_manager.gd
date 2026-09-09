@@ -12,6 +12,8 @@ signal position_received(pid: String, pos: Vector2)
 signal key_collected_by(pid: String)
 signal player_won(pid: String)
 signal server_error(message: String)
+signal game_paused(by_pid: String)
+signal game_resumed
 
 const SERVER_URL := "wss://ground-control-production-527b.up.railway.app"
 
@@ -25,6 +27,9 @@ var players: Dictionary = {}
 
 var _socket := WebSocketPeer.new()
 var _ready_state_prev := WebSocketPeer.STATE_CLOSED
+
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _process(_delta: float) -> void:
 	_socket.poll()
@@ -86,6 +91,10 @@ func _handle_packet(raw: PackedByteArray) -> void:
 			key_collected_by.emit(str(data["id"]))
 		"win":
 			player_won.emit(str(data["id"]))
+		"paused":
+			game_paused.emit(str(data.get("by", "")))
+		"resumed":
+			game_resumed.emit()
 		"error":
 			server_error.emit(str(data["message"]))
 
@@ -107,6 +116,12 @@ func send_key_collected() -> void:
 
 func send_win() -> void:
 	_send({ "type": "win" })
+
+func send_pause() -> void:
+	_send({ "type": "pause" })
+
+func send_resume() -> void:
+	_send({ "type": "resume" })
 
 func reset() -> void:
 	players.clear()
